@@ -30,4 +30,9 @@ public class Produto {
     public void setNome(String nome) {
         Nome = nome;
     }
+
+    @Override
+    public String toString() {
+        return "Cliente: " + Cliente + " - Produto: " + Nome;
+    }
 }

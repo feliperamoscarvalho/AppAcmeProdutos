@@ -2,7 +2,11 @@ package br.com.acmeprodutos.puc.acmeprodutos;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -19,8 +23,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MainActivity extends AppCompatActivity {
 
     private Spinner spnCliente;
+    private ImageView imgSalvar;
+    private EditText edtProduto;
+    private ListView listaProdutos;
     private List<String> nomesClientes = new ArrayList<String>();
-
     APIService service;
 
     // criando o Array de String
@@ -37,6 +43,9 @@ public class MainActivity extends AppCompatActivity {
         spnCliente = (Spinner) findViewById(R.id.spnCliente);
         spnCliente.setAdapter(arrayOpcoes);
 
+        imgSalvar = (ImageView) findViewById(R.id.imgSalvar);
+        edtProduto = (EditText) findViewById(R.id.edtProduto);
+
         //Inicia o retrofit
         Retrofit retrofit = new Retrofit.Builder()
                             .baseUrl(APIService.BASE_URL)
@@ -44,13 +53,50 @@ public class MainActivity extends AppCompatActivity {
                             .build();
         service = retrofit.create(APIService.class);
 
+        imgSalvar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                salvarProduto();
+            }
+        });
+
+        listarProdutos();
+
+    }
+
+    public void listarProdutos(){
+
+        Call<List<Produto>> call = service.listProdutos();
+        call.enqueue(new Callback<List<Produto>>() {
+            @Override
+            public void onResponse(Call<List<Produto>> call, Response<List<Produto>> response) {
+
+                if(response.isSuccessful()){
+
+                    List<Produto> produtos = response.body();
+                    ArrayAdapter<Produto> adapter = new ArrayAdapter<Produto>(MainActivity.this, android.R.layout.simple_list_item_1, produtos);
+                    listaProdutos = (ListView) findViewById(R.id.listaProdutos);
+                    listaProdutos.setAdapter(adapter);
+
+                }else{
+                    Toast.makeText(getBaseContext(), "Houve um erro na comunicação!", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<List<Produto>> call, Throwable t) {
+                Toast.makeText(getBaseContext(), "Houve um erro na comunicação!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
     public void salvarProduto(){
 
         Produto produto = new Produto();
-        produto.setNome("Teste");
-        produto.setCliente("coyote");
+        produto.setNome(edtProduto.getText().toString());
+        produto.setCliente(spnCliente.getSelectedItem().toString());
 
         //Inserir via Retrofit
         Call<Produto> call = service.createProduto(produto);
