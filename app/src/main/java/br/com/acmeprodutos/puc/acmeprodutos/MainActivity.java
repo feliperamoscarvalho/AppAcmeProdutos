@@ -1,8 +1,11 @@
 package br.com.acmeprodutos.puc.acmeprodutos;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -39,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Cria o spinner
-        arrayOpcoes = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, opcoes);
+        arrayOpcoes = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, opcoes);
         spnCliente = (Spinner) findViewById(R.id.spnCliente);
         spnCliente.setAdapter(arrayOpcoes);
 
@@ -57,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 salvarProduto();
-                listarProdutos();
+                edtProduto.setText("");
             }
         });
 
@@ -75,9 +78,42 @@ public class MainActivity extends AppCompatActivity {
                 if(response.isSuccessful()){
 
                     List<Produto> produtos = response.body();
-                    ArrayAdapter<Produto> adapter = new ArrayAdapter<Produto>(MainActivity.this, android.R.layout.simple_list_item_1, produtos);
+                    final ArrayAdapter<Produto> adapter = new ArrayAdapter<Produto>(MainActivity.this, android.R.layout.simple_list_item_activated_1, produtos);
                     listaProdutos = (ListView) findViewById(R.id.listaProdutos);
                     listaProdutos.setAdapter(adapter);
+
+                    listaProdutos.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                        @Override
+                        public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long l) {
+
+                            final Produto produtoSelecionado = adapter.getItem(position);
+
+                            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+
+                            builder.setTitle("Excluir produto");
+                            builder.setMessage("Deseja excluir o produto " + produtoSelecionado.getNome() +"?");
+
+                            builder.setPositiveButton("Excluir", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    excluirProduto(produtoSelecionado);
+                                }
+                            });
+
+                            builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    return;
+                                }
+                            });
+
+                            AlertDialog dialog = builder.create();
+                            dialog.show();
+
+                            return false;
+                        }
+                    });
+
 
                 }else{
                     Toast.makeText(getBaseContext(), "Houve um erro na comunicação!", Toast.LENGTH_SHORT).show();
@@ -109,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
                 if(response.isSuccessful()){
 
                     Toast.makeText(getBaseContext(), "Produto salvo com sucesso!", Toast.LENGTH_SHORT).show();
-                    //chamar o listar para atualizar o ListView
+                    listarProdutos();
 
                 }else{
                     Toast.makeText(getBaseContext(), "Houve um erro na comunicação!", Toast.LENGTH_SHORT).show();
@@ -137,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
                 if(response.isSuccessful()){
 
                     Toast.makeText(getBaseContext(), "Produto excluído com sucesso!", Toast.LENGTH_SHORT).show();
-                    //chamar o listar para atualizar o ListView
+                    listarProdutos();
 
                 }else{
                     Toast.makeText(getBaseContext(), "Houve um erro na comunicação!", Toast.LENGTH_SHORT).show();
