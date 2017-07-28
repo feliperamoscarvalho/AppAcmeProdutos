@@ -1,8 +1,8 @@
 package br.com.acmeprodutos.puc.acmeprodutos;
 
+import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -59,8 +59,14 @@ public class MainActivity extends AppCompatActivity {
         imgSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                salvarProduto();
-                edtProduto.setText("");
+                if (edtProduto.getText().toString().equals("")){
+                    Toast.makeText(getBaseContext(), "Digite o nome do produto!", Toast.LENGTH_SHORT).show();
+                }else{
+                    salvarProduto();
+                    edtProduto.setText("");
+                }
+
+
             }
         });
 
