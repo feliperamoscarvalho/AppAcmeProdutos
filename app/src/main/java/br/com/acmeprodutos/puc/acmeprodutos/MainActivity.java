@@ -41,10 +41,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Cria o spinner
-        arrayOpcoes = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, opcoes);
+        // Preenche o spinner
+        //arrayOpcoes = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, opcoes);
         spnCliente = (Spinner) findViewById(R.id.spnCliente);
-        spnCliente.setAdapter(arrayOpcoes);
+        ArrayAdapter<CharSequence> adapterSpinner = ArrayAdapter.createFromResource(this, R.array.clientes_array, android.R.layout.simple_spinner_dropdown_item);
+        adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnCliente.setAdapter(adapterSpinner);
 
         imgSalvar = (ImageView) findViewById(R.id.imgSalvar);
         edtProduto = (EditText) findViewById(R.id.edtProduto);

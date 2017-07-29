@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">AcmeProdutos</string>
+    <string-array name="clientes_array">
+        <item>coyote</item>
+        <item>papa-leguas</item>
+    </string-array>
 </resources>
