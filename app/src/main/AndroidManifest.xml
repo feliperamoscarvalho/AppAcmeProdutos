@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".CadastroUsuarioActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,15 +20,16 @@
 
         <service android:name=".firebase.CDCMessasingService">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"></action>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
         <service android:name=".firebase.CDCInstanceIDService">
             <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"></action>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
 
+        <activity android:name=".MainActivity"></activity>
     </application>
 
 </manifest>

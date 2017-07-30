@@ -13,7 +13,6 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.ResponseBody;
@@ -29,12 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView imgSalvar;
     private EditText edtProduto;
     private ListView listaProdutos;
-    private List<String> nomesClientes = new ArrayList<String>();
     APIService service;
-
-    // criando o Array de String
-    private static final String[] opcoes = { "coyote", "papa-leguas"};
-    ArrayAdapter<String> arrayOpcoes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,11 +36,22 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Preenche o spinner
-        //arrayOpcoes = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, opcoes);
         spnCliente = (Spinner) findViewById(R.id.spnCliente);
         ArrayAdapter<CharSequence> adapterSpinner = ArrayAdapter.createFromResource(this, R.array.clientes_array, android.R.layout.simple_spinner_dropdown_item);
         adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spnCliente.setAdapter(adapterSpinner);
+
+        //Exibe o tipoCliente salvo no preferences e desabilita o Spinner
+        Preferencias preferencias = new Preferencias(MainActivity.this);
+        String tipoCliente = preferencias.getTipoCliente();
+        if(tipoCliente != null){
+            if(tipoCliente == "coyote"){
+                spnCliente.setSelection(1);
+            }else if(tipoCliente == "papa-leguas"){
+                spnCliente.setSelection(2);
+            }
+            spnCliente.setEnabled(false);
+        }
 
         imgSalvar = (ImageView) findViewById(R.id.imgSalvar);
         edtProduto = (EditText) findViewById(R.id.edtProduto);

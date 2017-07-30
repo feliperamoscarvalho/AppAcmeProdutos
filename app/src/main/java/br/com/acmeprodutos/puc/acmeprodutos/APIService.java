@@ -23,4 +23,7 @@ public interface APIService {
     @DELETE("Produtos/{ID}")
     Call<ResponseBody> deleteProduto (@Path("ID") int ID);
 
+    @POST("Usuarios")
+    Call<Usuario> createUsuario(@Body Usuario usuario);
+
 }

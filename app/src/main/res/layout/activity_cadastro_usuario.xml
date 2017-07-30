@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/background_light"
+    android:gravity="center_vertical|center_horizontal"
+    tools:context="br.com.acmeprodutos.puc.acmeprodutos.CadastroUsuarioActivity">
+
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="49dp"
+        app:srcCompat="@drawable/logo" />
+
+    <EditText
+        android:id="@+id/edtNomeUsuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="27dp"
+        android:ems="10"
+        android:hint="Nome"
+        android:inputType="textPersonName" />
+
+    <Spinner
+        android:id="@+id/spnClienteUsuario"
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="34dp"
+        android:layout_below="@+id/edtNomeUsuario"
+        android:layout_alignRight="@+id/edtNomeUsuario"
+        android:layout_alignEnd="@+id/edtNomeUsuario" />
+
+    <Button
+        android:id="@+id/btnCadastrarUsuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spnClienteUsuario"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="33dp"
+        android:text="CADASTRAR" />
+</RelativeLayout>
