@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "782442240718",
+    "firebase_url": "https://acmeprodutos.firebaseio.com",
+    "project_id": "acmeprodutos",
+    "storage_bucket": "acmeprodutos.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:782442240718:android:d95703451dd832f4",
+        "android_client_info": {
+          "package_name": "br.com.acmeprodutos.puc.acmeprodutos"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "782442240718-n3puabh9mnvoi17ktv1m1ek361fd6gfd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCU1Ep3aDgq5VJFA3I2AQwzuvC4MwO1yY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
