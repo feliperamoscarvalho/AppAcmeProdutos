@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "204863314170",
-    "firebase_url": "https://acmeapp-ccbeb.firebaseio.com",
-    "project_id": "acmeapp-ccbeb",
-    "storage_bucket": "acmeapp-ccbeb.appspot.com"
+    "project_number": "782442240718",
+    "firebase_url": "https://acmeprodutos.firebaseio.com",
+    "project_id": "acmeprodutos",
+    "storage_bucket": "acmeprodutos.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:204863314170:android:d95703451dd832f4",
+        "mobilesdk_app_id": "1:782442240718:android:d95703451dd832f4",
         "android_client_info": {
           "package_name": "br.com.acmeprodutos.puc.acmeprodutos"
         }
       },
       "oauth_client": [
         {
-          "client_id": "204863314170-5p4mj3efdpqfpas2mmnb24k6qppkitmg.apps.googleusercontent.com",
+          "client_id": "782442240718-n3puabh9mnvoi17ktv1m1ek361fd6gfd.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyB1kHyym4lPTDWlgvtOKVIeMCb4QYqqijc"
+          "current_key": "AIzaSyBCU1Ep3aDgq5VJFA3I2AQwzuvC4MwO1yY"
         }
       ],
       "services": {
