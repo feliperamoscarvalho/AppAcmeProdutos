@@ -70,10 +70,4 @@
         android:text="Você é um:"
         android:textStyle="bold" />
 
-    <TextView
-        android:visibility="invisible"
-        android:id="@+id/text_hello"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
 </RelativeLayout>

@@ -12,7 +12,7 @@ import retrofit2.http.Path;
 
 public interface APIService {
 
-    String BASE_URL = "http://acmecorpwebapi.azurewebsites.net/api/"; // http://apiacmecorp.azurewebsites.net/api/ http://localhost:49240/api/ http://acmecorpwebapi.azurewebsites.net/api
+    String BASE_URL = "http://apiacmecorp.azurewebsites.net/api/";
 
     @GET("Produtos")
     Call<List<Produto>> listProdutos();
